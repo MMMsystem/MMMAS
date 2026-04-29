@@ -1,141 +1,142 @@
-# 孟德尔错配矩阵分析系统 (MMM)
+# Mendelian Mismatch Matrix Analysis System (MMM)
 
 [![Python Version](https://img.shields.io/badge/python-3.8%2B-blue)](https://www.python.org/)
 [![License](https://img.shields.io/badge/license-MIT-green)](LICENSE)
 
-## 简介
+## Introduction
 
-**孟德尔错配矩阵分析系统 (Mendelian Mismatch Matrix Analysis System, MMM)** 是一款用于植物品种遗传关系分析的专业工具。该系统基于孟德尔遗传定律，通过计算样本间的错配矩阵（Mismatch Matrix），实现对品种间遗传差异的定量评估与分级分类。
+The **Mendelian Mismatch Matrix Analysis System (MMM)** is a professional tool for analyzing genetic relationships among plant varieties. Based on Mendelian inheritance laws, this system calculates the mismatch matrix between samples to quantitatively evaluate and classify genetic differences.
 
-本系统整合了**矩阵构建**与**分级分析**两大核心模块，支持 SSR 和 SNP 两种主流分子标记类型，能够自动识别多种基因型数据格式，并提供图形用户界面（GUI）与命令行两种操作模式。
-
----
-
-## 核心功能
-
-### 1. 自动格式识别与矩阵构建
-- 自动识别多种基因型数据格式：
-  - `original`：斜杠分隔格式（如 `120/130`）
-  - `reformatted`：分列格式（如 `_1`/`_2`、`.1`/`.2`、`_a`/`_b` 后缀）
-  - `SNP`：0/1/2 编码格式
-  - `transposed_base_snp`：转置碱基型格式（如 `CC`、`TC`、`TT`）
-- 自动检测标记类型（SSR / SNP）
-- 支持 CSV 文件多种编码自动识别（UTF-8、GBK、Latin-1 等）
-
-### 2. 高性能错配矩阵计算
-- **标准算法**：三重循环，适用于 ≤100 个样本的小规模数据
-- **向量化算法**：基于 NumPy 矩阵运算，适用于 ≤1000 个样本的中等规模数据
-- **并行计算**：多线程分块处理，适用于 >1000 个样本的大规模数据
-
-### 3. 六重数学验证
-构建的错配矩阵自动通过以下合规性验证：
-| 验证项 | 说明 |
-|--------|------|
-| 对称性 | 矩阵满足 `M[i,j] = M[j,i]` |
-| 非负性 | 所有错配数 ≥ 0 |
-| 有界性 | 所有错配数 ≤ 总位点数 |
-| 整数性 | 所有错配数为整数 |
-| 对角线规则 | 对角线元素为缺失值（NaN） |
-| 三角不等式 | 满足 `M[i,j] + M[j,k] ≥ M[i,k]` |
-
-### 4. 分级分析体系
-- **基础指标计算**：Mmin（最小错配数）、Mmax（最大错配数）、Mavg（平均错配数）、Mzmp（零错配伙伴数）
-- **差级分类 (Dk)**：按 Mmin 值将样本划分为不同差异等级
-- **累级分类 (Gk)**：按 Mmin ≥ k 的累积关系构建层级体系
-- **间隙指数 (MGI)**：评估分级体系的连续性
-- **零错配对检测**：识别孟德尔零错配样本对
-- **重复样本检测 (Mmmd)**：基于并查集算法检测完全重复的样本组
-
-### 5. D0 网络连通分析
-- 针对 Mmin=0 的样本构建连通网络
-- 识别连通分量、孤立样本及网络拓扑特征
-
-### 6. 图形用户界面 (GUI)
-- 基于 Tkinter 的友好操作界面
-- **矩阵构建标签页**：可视化选择输入文件、设置参数、实时查看日志
-- **分级分析标签页**：提供样本筛选、样本对比、样本搜索、分级体系查看、重复样本检测、D0 网络连通分析等功能
+The system integrates two core modules: **Matrix Construction** and **Grading Analysis**, supports both SSR and SNP molecular marker types, automatically recognizes multiple genotype data formats, and provides both Graphical User Interface (GUI) and command-line operation modes.
 
 ---
 
-## 安装依赖
+## Core Features
+
+### 1. Automatic Format Recognition and Matrix Construction
+- Automatically recognizes multiple genotype data formats:
+  - `original`: Slash-delimited format (e.g., `120/130`)
+  - `reformatted`: Split-column format (e.g., `_1`/`_2`, `.1`/`.2`, `_a`/`_b` suffixes)
+  - `SNP`: 0/1/2 coded format
+  - `transposed_base_snp`: Transposed base format (e.g., `CC`, `TC`, `TT`)
+- Automatic marker type detection (SSR / SNP)
+- Automatic CSV encoding recognition (UTF-8, GBK, Latin-1, etc.)
+
+### 2. High-Performance Mismatch Matrix Calculation
+- **Standard Algorithm**: Triple-loop implementation, suitable for small datasets (≤100 samples)
+- **Vectorized Algorithm**: NumPy-based matrix operations, suitable for medium datasets (≤1000 samples)
+- **Parallel Computing**: Multi-threaded block processing, suitable for large datasets (>1000 samples)
+
+### 3. Six-Fold Mathematical Validation
+Constructed mismatch matrices automatically pass the following compliance validations:
+
+| Validation | Description |
+|------------|-------------|
+| Symmetry | Matrix satisfies `M[i,j] = M[j,i]` |
+| Non-negativity | All mismatch counts ≥ 0 |
+| Boundedness | All mismatch counts ≤ total loci count |
+| Integrality | All mismatch counts are integers |
+| Diagonal Rule | Diagonal elements are missing values (NaN) |
+| Triangle Inequality | Satisfies `M[i,j] + M[j,k] ≥ M[i,k]` |
+
+### 4. Grading Analysis System
+- **Basic Metrics**: Mmin (minimum mismatch), Mmax (maximum mismatch), Mavg (average mismatch), Mzmp (zero-mismatch partner count)
+- **Stepwise Classification (Dk)**: Classifies samples into different difference grades based on Mmin values
+- **Cumulative Classification (Gk)**: Builds hierarchical system based on cumulative relationship Mmin ≥ k
+- **Gap Index (MGI)**: Evaluates the continuity of the grading system
+- **Zero-Mismatch Pair Detection**: Identifies Mendelian zero-mismatch sample pairs
+- **Duplicate Sample Detection (Mmmd)**: Detects completely duplicate sample groups using Union-Find algorithm
+
+### 5. D0 Network Connectivity Analysis
+- Constructs connectivity network for samples with Mmin = 0
+- Identifies connected components, isolated samples, and network topology features
+
+### 6. Graphical User Interface (GUI)
+- User-friendly interface based on Tkinter
+- **Matrix Builder Tab**: Visual input file selection, parameter setting, real-time log viewing
+- **Grading Analysis Tab**: Sample filtering, sample comparison, sample search, grading system view, duplicate sample detection, D0 network connectivity analysis
+
+---
+
+## Installation
 
 ```bash
 pip install numpy pandas matplotlib networkx
 ```
 
-### 系统要求
+### System Requirements
 - Python ≥ 3.8
-- 操作系统：Windows / macOS / Linux
+- Operating System: Windows / macOS / Linux
 
 ---
 
-## 快速开始
+## Quick Start
 
-### 方式一：图形界面（推荐初学者）
+### Method 1: Graphical Interface (Recommended for Beginners)
 
 ```bash
-python MMMv1.py
+python MMMv1_en.py
 ```
 
-无参数运行将自动启动 GUI 界面：
-1. 选择**输入 CSV 文件**
-2. 选择**输出目录**
-3. 点击【开始构建】
+Running without parameters automatically launches the GUI:
+1. Select **Input CSV File**
+2. Select **Output Directory**
+3. Click **【Start Build】**
 
-### 方式二：命令行模式
+### Method 2: Command Line Mode
 
-#### 构建矩阵并自动分级
+#### Build matrix with automatic grading
 ```bash
-python MMMv1.py -i input.csv -o output_dir
+python MMMv1_en.py -i input.csv -o output_dir
 ```
 
-#### 仅对已有矩阵进行分级分析
+#### Grade existing matrix only
 ```bash
-python MMMv1.py --grading -m MMM_Matrix.csv -o grading_output
+python MMMv1_en.py --grading -m MMM_Matrix.csv -o grading_output
 ```
 
-#### 指定 SSR 标记类型
+#### Specify SSR marker type
 ```bash
-python MMMv1.py -i input.csv -o output_dir -t SSR
+python MMMv1_en.py -i input.csv -o output_dir -t SSR
 ```
 
-#### 禁用多线程（调试时使用）
+#### Disable multi-threading (for debugging)
 ```bash
-python MMMv1.py -i input.csv -o output_dir --no-threads
+python MMMv1_en.py -i input.csv -o output_dir --no-threads
 ```
 
-### 命令行参数说明
+### Command Line Arguments
 
-| 参数 | 说明 |
-|------|------|
-| `-i, --input` | 输入原始基因型 CSV 文件路径 |
-| `-o, --output` | 输出目录路径 |
-| `-m, --matrix` | 已有 MMM 矩阵文件路径（分级模式） |
-| `-t, --type` | 标记类型：`SSR` 或 `SNP`（默认自动检测） |
-| `--no-grading` | 构建矩阵后不自动进行分级分析 |
-| `--grading` | 仅执行分级分析模式 |
-| `--no-threads` | 禁用多线程 |
-| `-v, --version` | 显示版本信息 |
+| Argument | Description |
+|----------|-------------|
+| `-i, --input` | Input raw genotype CSV file path |
+| `-o, --output` | Output directory path |
+| `-m, --matrix` | Existing MMM matrix file path (grading mode) |
+| `-t, --type` | Marker type: `SSR` or `SNP` (default: auto-detect) |
+| `--no-grading` | Skip automatic grading after matrix construction |
+| `--grading` | Execute grading analysis only |
+| `--no-threads` | Disable multi-threading |
+| `-v, --version` | Show version information |
 
 ---
 
-## 输入数据格式示例
+## Input Data Format Examples
 
-### 格式 1：Original（斜杠分隔）
+### Format 1: Original (Slash-delimited)
 ```csv
 SampleID,LOCUS1,LOCUS2,LOCUS3
 Sample001,120/130,140/150,160/170
 Sample002,120/120,140/140,160/160
 ```
 
-### 格式 2：Reformatted（分列）
+### Format 2: Reformatted (Split-column)
 ```csv
 SampleID,LOCUS1_1,LOCUS1_2,LOCUS2_1,LOCUS2_2
 Sample001,120,130,140,150
 Sample002,120,120,140,140
 ```
 
-### 格式 3：SNP（0/1/2 编码）
+### Format 3: SNP (0/1/2 Coded)
 ```csv
 SampleID,SNP1,SNP2,SNP3
 Sample001,0,1,2
@@ -144,90 +145,90 @@ Sample002,0,0,1
 
 ---
 
-## 输出文件说明
+## Output Files
 
-运行完成后，输出目录将生成以下文件：
+After execution, the output directory will contain the following files:
 
-| 文件名 | 说明 |
-|--------|------|
-| `MMM_Matrix.csv` | 错配矩阵 M |
-| `MMM_Effective_Loci_Matrix.csv` | 有效位点矩阵 L |
-| `MMM_Analytical_Report.csv` | 完整分析报告 |
-| `MMM_Dk_Classification.csv` | Dk 分级结果表 |
-| `MMM_basic.csv` | 基础指标表（Mmin/Mmax/Mavg/Mzmp） |
-| `MMM_Grading_Summary.csv` | 分级体系汇总表 |
-| `MMM_MGI.txt` | 间隙指数信息 |
-| `MMM_Zero_Mismatch_Pairs.csv` | 零错配对检测结果 |
-| `MMM_Duplicate_Samples.csv` | 重复样本对列表 |
-| `MMM_Duplicate_Groups.csv` | 重复样本组列表 |
-| `MMM_Build_Report.txt` | 构建摘要报告（文本格式） |
+| Filename | Description |
+|----------|-------------|
+| `MMM_Matrix.csv` | Mismatch matrix M |
+| `MMM_Effective_Loci_Matrix.csv` | Effective loci matrix L |
+| `MMM_Analytical_Report.csv` | Complete analysis report |
+| `MMM_Dk_Classification.csv` | Dk classification results |
+| `MMM_basic.csv` | Basic metrics table (Mmin/Mmax/Mavg/Mzmp) |
+| `MMM_Grading_Summary.csv` | Grading system summary |
+| `MMM_MGI.txt` | Gap index information |
+| `MMM_Zero_Mismatch_Pairs.csv` | Zero-mismatch pair detection results |
+| `MMM_Duplicate_Samples.csv` | Duplicate sample pairs list |
+| `MMM_Duplicate_Groups.csv` | Duplicate sample groups list |
+| `MMM_Build_Report.txt` | Build summary report (text format) |
 
 ---
 
-## 算法原理
+## Algorithm Principles
 
-### 孟德尔错配判定
-对于两个样本的基因型 `g1 = (a1, a2)` 和 `g2 = (b1, b2)`，当它们**没有任何共享等位基因**时，判定为孟德尔错配：
-
-```
-is_mismatch(g1, g2) = true  当且仅当  {a1, a2} ∩ {b1, b2} = ∅
-```
-
-### 错配矩阵定义
-对于 N 个样本、L 个位点的数据集，错配矩阵 M 是一个 N×N 的对称矩阵：
+### Mendelian Mismatch Criterion
+For two sample genotypes `g1 = (a1, a2)` and `g2 = (b1, b2)`, a Mendelian mismatch is determined when they **share no common alleles**:
 
 ```
-M[i,j] = 样本 i 与样本 j 之间存在孟德尔错配的位点数
+is_mismatch(g1, g2) = true  if and only if  {a1, a2} ∩ {b1, b2} = ∅
 ```
 
-对角线元素 `M[i,i]` 设为缺失值（NaN）。
+### Mismatch Matrix Definition
+For a dataset with N samples and L loci, the mismatch matrix M is an N×N symmetric matrix:
 
-### Dk 差级分类
-样本 `s` 的差级 `Dk` 定义为其与其他所有样本的最小错配数：
+```
+M[i,j] = Number of loci with Mendelian mismatch between sample i and sample j
+```
+
+Diagonal elements `M[i,i]` are set to missing values (NaN).
+
+### Dk Stepwise Classification
+The stepwise grade `Dk` of sample `s` is defined as its minimum mismatch count with all other samples:
 
 ```
 Dk(s) = min{ M[s, j] | j ≠ s }
 ```
 
-差级越小，表示该样本在群体中具有越近的遗传关系。
+A smaller Dk grade indicates closer genetic relationships within the population.
 
 ---
 
-## 项目结构
+## Project Structure
 
 ```
 .
-├── MMMv1.py          # 主程序（中文版）
-├── MMMv1_en.py       # 主程序（英文版）
-├── README.md         # 中文说明文档
-├── README_EN.md      # 英文说明文档
+├── MMMv1.py          # Main program (Chinese version)
+├── MMMv1_en.py       # Main program (English version)
+├── README.md         # Chinese documentation
+├── README_EN.md      # English documentation
 └── ...
 ```
 
 ---
 
-## 版本信息
+## Version Information
 
-- **当前版本**：v1.0.0
-- **发布日期**：2026-04-19
-- **作者**：MMM Assistant
-
----
-
-## 许可证
-
-本项目采用 MIT 许可证开源，详见 [LICENSE](LICENSE) 文件。
+- **Current Version**: v1.0.0
+- **Release Date**: 2026-04-19
+- **Author**: MMM Assistant
 
 ---
 
-## 引用与致谢
+## License
 
-如果您在研究中使用了本系统，请引用：
-
-> MMM Assistant. (2026). Mendelian Mismatch Matrix Analysis System (MMM v1.0). 
+This project is open-sourced under the MIT License. See the [LICENSE](LICENSE) file for details.
 
 ---
 
-## 联系我们
+## Citation
 
-如有问题或建议，欢迎通过 GitHub Issues 提交反馈。
+If you use this system in your research, please cite:
+
+> MMM Assistant. (2026). Mendelian Mismatch Matrix Analysis System (MMM v1.0).
+
+---
+
+## Contact
+
+For questions or suggestions, please submit feedback via GitHub Issues.
