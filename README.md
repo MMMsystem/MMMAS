@@ -396,7 +396,7 @@ This project is open-sourced under the MIT License. See the [LICENSE](LICENSE) f
 
 If you use this system in your research, please cite:
 
-> MMM Assistant. (2026). Mendelian Mismatch Matrix Analysis System (MMM v1.0).
+[![DOI](https://zenodo.org/badge/1215017107.svg)](https://doi.org/10.5281/zenodo.21441605)
 
 ---
 
