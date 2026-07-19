@@ -382,7 +382,7 @@ A high Mzmp (zero-mismatch partner count) indicates that the sample has multiple
 
 - **Current Version**: v1.0.0
 - **Release Date**: 2026-07-19
-- **Author**: MMM Assistant
+- **Author**: Qiliang Chen ,Liuxiu Chen
 
 ---
 
@@ -404,11 +404,7 @@ If you use this system in your research, please cite:
 
 | Item | Information |
 |---|---|
-| Project Homepage | _________________________________ |
-| Email | _________________________________ |
-| Technical Support | _________________________________ |
-| Author | _________________________________ |
-| Institution | _________________________________ |
-| GitHub Issues | _________________________________ |
+| Email | 26451851@qq.com|
+| Institution | 湖北省农业科学院果树茶叶研究所|
 
 For questions or suggestions, please contact us through the channels above.
