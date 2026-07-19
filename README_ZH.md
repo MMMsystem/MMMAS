@@ -396,7 +396,7 @@ Mzmp（零错配伙伴数）高说明该样本在库中有多遗传相同的品�
 
 如果您在研究中使用了本系统，请引用：
 
-> MMM Assistant. (2026). Mendelian Mismatch Matrix Analysis System (MMM v1.0).
+[![DOI](https://zenodo.org/badge/1215017107.svg)](https://doi.org/10.5281/zenodo.21441605)
 
 ---
 
