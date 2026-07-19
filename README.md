@@ -405,6 +405,6 @@ If you use this system in your research, please cite:
 | Item | Information |
 |---|---|
 | Email | 26451851@qq.com|
-| Institution | 湖北省农业科学院果树茶叶研究所|
+| Institution | Institute of Fruit and Tea, Hubei Academy of Agricultural Sciences|
 
 For questions or suggestions, please contact us through the channels above.
