@@ -337,11 +337,10 @@ python MMMAS.py -i large.csv -o ./output/ -cs 500
 
 ### Q2: What does a high Mzmp value indicate?
 
-A high Mzmp (zero-mismatch partner count) indicates that the sample has multiple genetically identical accessions in the library, possibly:
+A high Mzmp (Zero-mismatch partner count) indicates that the sample has varieties with suspected parent-offspring relationships in the collection, likely due to being:
 
-- A widely cultivated mainstream variety
-- A core parent in historical breeding programs
-- A synonym (different names for the same variety)
+- A widely cultivated pollinator cultivar
+- A historically important core breeding parent
 
 ### Q3: What is the difference between Mmmd=0 and Mmmd=1?
 
