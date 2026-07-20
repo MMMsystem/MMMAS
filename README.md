@@ -370,7 +370,7 @@ A high Mzmp (Zero-mismatch partner count) indicates that the sample has many var
 
 - **Current Version**: v1.0.0
 - **Release Date**: 2026-07-19
-- **Author**: Chen Qiliang, Fan Jing, Chen Liuxiu, Yang Xiaoping, Hu Hongju et al.
+- **Author**: Chen Qiliang, Chen Liuxiu, Fan Jing, Yang Xiaoping, Hu Hongju
 
 ---
 
