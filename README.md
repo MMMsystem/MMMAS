@@ -360,9 +360,9 @@ A high Mzmp (Zero-mismatch partner count) indicates that the sample has many var
 
 | Dk Grade | Biological Significance |
 |---|---|
-| Dk=0 | Core germplasm, no closer relatives in the library |
-| Dk=1 | Has at least one zero-mismatch partner, indicating a close kinship relationship |
-| Dk≥2 | Genetic distance gradually increases, kinship relationship becomes more distant |
+| Dk=0 | Accessions at this level have at least one other accession in the collection with zero mismatches (all loci conform to Mendelian parent-offspring transmission). A parent-offspring relationship cannot be excluded. |
+| Dk=1 | Accessions at this level have at least one mismatch with all other accessions in the collection (one locus does not conform to Mendelian parent-offspring transmission). |
+| Dk≥2 | Accessions at this level have at least K mismatches with all other accessions in the collection (K loci do not conform to Mendelian parent-offspring transmission). |
 
 ---
 
