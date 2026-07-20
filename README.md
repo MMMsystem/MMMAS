@@ -174,7 +174,7 @@ Sample2,1,2,0
 |---|---|
 | Samples | ≥ 2 |
 | Loci | ≥ 5 (≥ 11 recommended) |
-| Missing data | Allowed, represented by 0 or empty value |
+| Missing data | SSR markers: Missing data are permitted and can be represented as follows: empty values (None/''), na/nan/NA/NaN, null/NULL, 0, ./., -, ., -9, -1, 000, 999, 9999. Missing loci are excluded from the effective comparable locus count (Lij) during Mendelian mismatch matrix calculation and do not contribute to the mismatch count. SNP markers (0/1/2 encoding): Missing data are permitted and can be represented as follows: empty values (None/''), na/nan/NA/NaN, null/NULL, ./., -, ., -9, -1, 000, 999, 9999. Note: 0 is a valid genotype (homozygous reference allele) and must not be used as a missing value indicator. Missing loci are likewise excluded from the effective comparable locus count. |
 | Encoding | SSR/SNP auto-detection |
 
 ---
