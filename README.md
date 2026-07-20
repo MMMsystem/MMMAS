@@ -7,18 +7,7 @@ English | [中文](README_ZH.md)
 
 ## Introduction
 
-The **Mendelian Mismatch Matrix Analysis System (MMMAS)** is a germplasm bank pre-screening tool based on the Boolean Mendelian exclusion principle. By constructing an N×N mismatch matrix, the system enables duplicate detection, grading evaluation, genetic compatibility analysis, and other functions for germplasm resources.
-
-Key features include:
-
-- Automatic recognition of multiple SSR/SNP genotype data formats
-- High-performance calculation of the Mendelian mismatch matrix M, effective loci matrix L, and mismatch rate matrix MMR
-- Automatic marker type detection (SSR / SNP)
-- Five-fold mathematical compliance validation
-- MES (Mendelian Exhaustive Stratification) grading analysis
-- Zero-mismatch partner identification and duplicate sample detection
-- Complete analytical reports and visualizable outputs
-- Both Graphical User Interface (GUI) and command-line operation modes
+MMMAS (Mendelian Mismatch Matrix Analysis System) is a germplasm pre-screening tool based on Boolean Mendelian exclusion principles. Its core innovation extends pairwise exclusion logic into an N×N symmetric mismatch matrix, proposing three key metrics—Mmin (minimum mismatch number), Mavg (average mismatch number), and Mzmp (zero-mismatch partner count)—to construct the Mendelian Exhaustive Stratification (MES) framework for duplicate detection, pedigree validation, hierarchical evaluation, germplasm mining, and genetic compatibility analysis. Assuming no prior genetic model, the system relies solely on Boolean exclusion logic derived from Mendelian segregation laws, ensuring objective and reproducible results. With a computational complexity of O(N²L) (N = number of accessions, L = number of marker loci), it is suitable for rapid pre-screening of germplasm collections. The current version is optimized for SSR markers; SNP support will be added in future updates.
 
 ---
 
@@ -382,7 +371,7 @@ A high Mzmp (zero-mismatch partner count) indicates that the sample has multiple
 
 - **Current Version**: v1.0.0
 - **Release Date**: 2026-07-19
-- **Author**: Qiliang Chen ,Liuxiu Chen et al.
+- **Author**: Chen Qiliang, Fan Jing, Chen Liuxiu, Yang Xiaoping, Hu Hongju et al.
 
 ---
 
