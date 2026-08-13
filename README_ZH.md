@@ -202,7 +202,7 @@ Sample2,1,2,0
 
 | 文件名 | 中文名 | 说明 |
 |---|---|---|
-| `MMM_Zero_Mismatch_Pairs.csv` | 零错配对 | Mzmp=0 的样本对及 Mmmd 标记 |
+| `MMM_Zero_Mismatch_Pairs.csv` | 零错配对 | Mmn=0 的样本对及 Mmmd 标记 |
 | `MMM_Duplicate_Samples.csv` | 重复样本对 | 仅包含 Mmmd=1 的记录 |
 | `MMM_Duplicate_Groups.csv` | 重复样本组 | 使用并查集合并的重复样本组 |
 | `MMM_only_data.csv` | 去重后数据 | 自动去除重复样本后的基因型数据 |
